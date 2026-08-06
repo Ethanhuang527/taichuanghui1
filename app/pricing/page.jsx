@@ -1,8 +1,8 @@
 import { SITE, PLANS, PLAN_ORDER } from "@/lib/site";
 import { getCurrentUser } from "@/lib/auth";
 import { isMember } from "@/lib/access";
+import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
-import SubscribeButton from "@/components/SubscribeButton";
 
 export default function Pricing() {
   const user = getCurrentUser();
@@ -37,12 +37,12 @@ export default function Pricing() {
                   {member ? (
                     <span className="chip">你已是會員</span>
                   ) : (
-                    <SubscribeButton
-                      plan={key}
-                      loggedIn={!!user}
-                      label={`選擇${p.name}方案`}
-                      cls={p.best ? "btn primary block" : "btn ghost block"}
-                    />
+                    <Link
+                      href={`/checkout?plan=${key}`}
+                      className={p.best ? "btn primary block" : "btn ghost block"}
+                    >
+                      選擇{p.name}方案
+                    </Link>
                   )}
                   <ul className="feats">
                     {p.feats.map((f, i) => <li key={i}>{f}</li>)}
