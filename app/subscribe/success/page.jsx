@@ -34,7 +34,7 @@ export default function Success() {
           <div className="r"><span className="k">下次扣款</span><span className="v">{sub.currentPeriodEnd}</span></div>
         </div>
 
-        <Link href="/account" className="btn primary block" style={{ marginBottom: 14 }}>▶ 開始觀看專訪</Link>
+        <Link href="/browse" className="btn primary block" style={{ marginBottom: 14 }}>▶ 開始觀看專訪</Link>
         <div className="muted">
           <Link href="/account" className="link-teal">前往帳號設定</Link> · <Link href="/account" className="link-teal">下載收據</Link>
         </div>

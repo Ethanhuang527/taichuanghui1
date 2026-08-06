@@ -7,7 +7,7 @@ import { db } from "@/lib/db";
 export async function POST(req) {
   const form = await req.formData();
   const email = form.get("email") || "demo@voices.tw";
-  const next = form.get("next") || "/account";
+  const next = form.get("next") || "/browse";
 
   let user = db.users.find((u) => u.email === email);
   if (!user) user = db.users[0];

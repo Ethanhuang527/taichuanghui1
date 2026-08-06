@@ -2,19 +2,20 @@ import Link from "next/link";
 import { SITE } from "@/lib/site";
 import { getCurrentUser } from "@/lib/auth";
 
+// 內容區頁首（首頁＝/browse 內容首頁；品牌回入口頁 /）
 export default function SiteHeader({ active }) {
   const user = getCurrentUser();
   const nav = [
-    ["首頁", "/"],
+    ["首頁", "/browse"],
     ["人物", "/people"],
     ["專訪", "/people"],
-    ["語錄", "/#quotes"],
+    ["語錄", "/browse#quotes"],
     ["我的清單", "/account"],
   ];
   return (
     <div className="hd">
       <div className="in">
-        <Link href="/" className="brand"><span className="dot" />{SITE.brand}</Link>
+        <Link href="/browse" className="brand"><span className="dot" />{SITE.brand}</Link>
         {nav.map(([label, href], i) => (
           <Link key={i} href={href} className={`nav${active === label ? " active" : ""}`}>{label}</Link>
         ))}
@@ -27,7 +28,7 @@ export default function SiteHeader({ active }) {
         {user ? (
           <Link href="/account" className="avatar-sq">沈</Link>
         ) : (
-          <Link href="/pricing" className="btn primary" style={{ padding: "9px 18px" }}>開始探索</Link>
+          <Link href="/login" className="btn primary" style={{ padding: "9px 18px" }}>登入</Link>
         )}
       </div>
     </div>
