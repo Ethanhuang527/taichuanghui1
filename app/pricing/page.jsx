@@ -1,4 +1,4 @@
-import { SITE, PLANS } from "@/lib/site";
+import { SITE, PLANS, PLAN_ORDER } from "@/lib/site";
 import { getCurrentUser } from "@/lib/auth";
 import { isMember } from "@/lib/access";
 import SiteHeader from "@/components/SiteHeader";
@@ -10,56 +10,50 @@ export default function Pricing() {
 
   return (
     <>
-      <SiteHeader />
-      <section className="section">
-        <div className="container" style={{ textAlign: "center", maxWidth: 720, margin: "0 auto" }}>
-          <div className="eyebrow">PLANS</div>
-          <h2 style={{ fontSize: 32, margin: "8px 0 6px" }}>成為 {SITE.brand} 會員</h2>
-          <p className="muted" style={{ fontSize: 16 }}>看遍所有人物專訪與完整影片，每週人物來信、無廣告閱讀。</p>
-        </div>
-
+      <SiteHeader active="方案" />
+      <section className="pricing">
         <div className="container">
-          <div className="plans">
-            <div className="plan">
-              <h3>{PLANS.monthly.name}</h3>
-              <div className="price">NT${PLANS.monthly.price}<small> / {PLANS.monthly.unit}</small></div>
-              <ul>
-                <li>完整人物專訪</li>
-                <li>語錄選集</li>
-                <li>每週人物來信</li>
-              </ul>
-              {member ? <span className="chip">你已是會員</span>
-                : <SubscribeButton plan="monthly" loggedIn={!!user} label="訂閱月方案" cls="btn ghost block" />}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+            <div>
+              <h1 className="serif">選擇最適合你的方案</h1>
             </div>
-
-            <div className="plan best">
-              <span className="flag">最超值</span>
-              <h3>{PLANS.yearly.name}</h3>
-              <div className="price">NT${PLANS.yearly.price.toLocaleString()}<small> / {PLANS.yearly.unit}</small></div>
-              <ul>
-                <li>月方案所有內容</li>
-                <li>等於省 2 個月</li>
-                <li>完整專訪影片</li>
-                <li>無廣告閱讀</li>
-              </ul>
-              {member ? <span className="chip">你已是會員</span>
-                : <SubscribeButton plan="yearly" loggedIn={!!user} label="訂閱年方案" />}
-            </div>
-
-            <div className="plan">
-              <h3>團隊方案</h3>
-              <div className="price">聯絡我們</div>
-              <ul>
-                <li>5 席以上企業訂閱</li>
-                <li>統一帳單與後台</li>
-                <li>專屬客戶經理</li>
-              </ul>
-              <a className="btn ghost block" href="mailto:hello@voices.tw">洽談團隊方案</a>
-            </div>
+            <div className="stepper">第 1 步，共 3 步</div>
           </div>
 
-          <p className="muted center" style={{ marginTop: 20 }}>
-            示範說明：訂閱按鈕會直接把你標記為會員；正式版導向綠界定期定額，付款成功的 Webhook 回報後才寫入。
+          <ul className="checks">
+            <li>隨時可取消，沒有任何綁約</li>
+            <li>每週更新，一位值得認識的企業人物</li>
+            <li>無廣告，完整深度影音專訪與語錄</li>
+          </ul>
+
+          <div className="plans">
+            {PLAN_ORDER.map((key) => {
+              const p = PLANS[key];
+              return (
+                <div key={key} className={`plan${p.best ? " best" : ""}`}>
+                  {p.best && <span className="flag">最受歡迎</span>}
+                  <h3 className="serif">{p.name}</h3>
+                  <div className={`price${p.best ? " hl" : ""}`}>NT${p.price}<small>月</small></div>
+                  {member ? (
+                    <span className="chip">你已是會員</span>
+                  ) : (
+                    <SubscribeButton
+                      plan={key}
+                      loggedIn={!!user}
+                      label={`選擇${p.name}方案`}
+                      cls={p.best ? "btn primary block" : "btn ghost block"}
+                    />
+                  )}
+                  <ul className="feats">
+                    {p.feats.map((f, i) => <li key={i}>{f}</li>)}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+
+          <p className="muted center" style={{ marginTop: 22 }}>
+            可隨時在帳號設定變更或取消方案。所有價格均含稅。
           </p>
         </div>
       </section>

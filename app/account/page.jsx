@@ -16,7 +16,7 @@ export default function Account() {
 
   const sub = getSubscription(user.id);
   const member = isMember(user);
-  const plan = sub ? (PLANS[sub.plan] || PLANS.yearly) : PLANS.yearly;
+  const plan = sub ? (PLANS[sub.plan] || PLANS.standard) : PLANS.standard;
   const recent = db.people.filter((p) => !p.featured).slice(0, 3);
   const times = ["2 天前", "5 天前", "1 週前"];
 
@@ -45,7 +45,7 @@ export default function Account() {
         <div className="top">
           <h1>帳號總覽</h1>
           <div className="search">搜尋…</div>
-          <span className="avatar-chip"><Avatar size={28} ring />{user.name}</span>
+          <span className="avatar-sq">沈</span>
         </div>
 
         <div className="greet">早安，{user.name}。</div>
