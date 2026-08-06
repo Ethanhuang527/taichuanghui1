@@ -31,7 +31,7 @@ export default function Home() {
           </div>
           <div className="login-mini">
             <span className="hint">還不是會員？</span>
-            <Link href="/pricing">免費註冊</Link>
+            <Link href="/register">免費註冊</Link>
           </div>
           <Link href="/login" className="btn primary" style={{ padding: "10px 20px" }}>登入</Link>
         </div>
@@ -62,7 +62,7 @@ export default function Home() {
             {/* 登入 + 提示 */}
             <div className="land-cta">
               <Link href="/login" className="btn primary">▶ 登入，開始探索</Link>
-              <span className="hint">還不是會員？<Link href="/pricing">免費註冊 →</Link></span>
+              <span className="hint">還不是會員？<Link href="/register">免費註冊 →</Link></span>
             </div>
           </div>
 

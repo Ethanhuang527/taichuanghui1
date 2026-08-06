@@ -29,7 +29,7 @@ export default function Login({ searchParams }) {
           <span className="link-teal">需要協助？</span>
         </div>
 
-        <div className="reg">還沒有帳號？<Link href="/pricing" className="link-teal">免費註冊</Link></div>
+        <div className="reg">還沒有帳號？<Link href="/register" className="link-teal">免費註冊</Link></div>
         <div className="tos">本頁受安全驗證保護，以確認你不是機器人。</div>
         <div className="tos">示範版：任何 Email 皆可登入</div>
       </div>

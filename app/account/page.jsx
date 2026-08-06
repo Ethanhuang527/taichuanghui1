@@ -35,7 +35,7 @@ export default function Account() {
         <div className="me">
           <Avatar size={36} ring />
           <div>
-            <div className="nm">沈{user.name}</div>
+            <div className="nm">{user.name}</div>
             <div className="pl">{member ? plan.name : "免費帳號"}</div>
           </div>
         </div>
@@ -45,7 +45,7 @@ export default function Account() {
         <div className="top">
           <h1>帳號總覽</h1>
           <div className="search">搜尋…</div>
-          <span className="avatar-sq">沈</span>
+          <span className="avatar-sq">{user.name?.[0] || "會"}</span>
         </div>
 
         <div className="greet">早安，{user.name}。</div>

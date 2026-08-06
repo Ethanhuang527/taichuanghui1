@@ -26,7 +26,7 @@ export default function SiteHeader({ active }) {
           </svg>
         </div>
         {user ? (
-          <Link href="/account" className="avatar-sq">沈</Link>
+          <Link href="/account" className="avatar-sq">{user.name?.[0] || "會"}</Link>
         ) : (
           <Link href="/login" className="btn primary" style={{ padding: "9px 18px" }}>登入</Link>
         )}

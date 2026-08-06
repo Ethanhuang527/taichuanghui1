@@ -17,7 +17,7 @@ export default function Success() {
         <div className="in">
           <Link href="/" className="brand"><span className="dot" />{SITE.brand}</Link>
           <div style={{ flex: 1 }} />
-          <span className="avatar-sq">沈</span>
+          <span className="avatar-sq">{user.name?.[0] || "會"}</span>
         </div>
       </div>
 
