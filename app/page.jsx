@@ -22,13 +22,14 @@ export default function Home() {
             <Link href="/browse">人物</Link>
             <Link href="/browse">專訪</Link>
             <Link href="/browse#quotes">語錄</Link>
-            <Link href="/pricing">會員方案</Link>
+            <Link href="/pricing">訂閱方案</Link>
           </div>
           <div className="sp" style={{ flex: 1 }} />
           <div className="searchbox">
             <SearchIcon />
             <input placeholder="快速搜尋人物、產業、關鍵字…" />
           </div>
+          <Link href="/pricing" className="btn ghost" style={{ padding: "9px 16px" }}>訂閱方案</Link>
           <div className="login-mini">
             <span className="hint">還不是會員？</span>
             <Link href="/register">免費註冊</Link>

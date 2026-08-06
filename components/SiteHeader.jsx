@@ -10,6 +10,7 @@ export default function SiteHeader({ active }) {
     ["人物", "/people"],
     ["專訪", "/people"],
     ["語錄", "/browse#quotes"],
+    ["訂閱方案", "/pricing"],
     ["我的清單", "/account"],
   ];
   return (

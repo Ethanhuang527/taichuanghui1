@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SITE } from "@/lib/site";
 
 export default function Login({ searchParams }) {
-  const next = searchParams?.next || "/browse";
+  const next = searchParams?.next || "/account";
   return (
     <div className="login-wrap">
       <div className="login-bg">
