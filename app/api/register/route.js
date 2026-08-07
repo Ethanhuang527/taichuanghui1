@@ -10,5 +10,5 @@ export async function POST(req) {
   cookies().set("session", signSession(user.id), {
     httpOnly: true, sameSite: "lax", path: "/", maxAge: 60 * 60 * 24 * 30,
   });
-  return NextResponse.redirect(new URL("/account", req.url), { status: 303 });
+  return NextResponse.redirect(new URL("/browse", req.url), { status: 303 });
 }
