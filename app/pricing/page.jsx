@@ -6,7 +6,7 @@ import SiteHeader from "@/components/SiteHeader";
 
 export default function Pricing() {
   const user = getCurrentUser();
-  const member = isMember(user);
+  const member = isMember();
 
   return (
     <>

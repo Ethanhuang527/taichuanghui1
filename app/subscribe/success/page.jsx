@@ -2,12 +2,12 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { SITE, PLANS } from "@/lib/site";
 import { getCurrentUser } from "@/lib/auth";
-import { getSubscription } from "@/lib/db";
+import { currentSubscription } from "@/lib/access";
 
 export default function Success() {
   const user = getCurrentUser();
   if (!user) redirect("/login");
-  const sub = getSubscription(user.id);
+  const sub = currentSubscription();
   if (!sub) redirect("/pricing");
   const plan = PLANS[sub.plan] || PLANS.standard;
 

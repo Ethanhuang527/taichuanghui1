@@ -11,8 +11,7 @@ export async function POST(req) {
   if (!person || !person.hasVideo)
     return NextResponse.json({ reason: "not_found" }, { status: 404 });
 
-  const user = getCurrentUser();
-  if (!canWatch(user)) return NextResponse.json({ reason: "paywall" }, { status: 403 });
+  if (!canWatch()) return NextResponse.json({ reason: "paywall" }, { status: 403 });
 
   const { url, expires } = signedPlaybackUrl(person);
   return NextResponse.json({ url, expires });

@@ -1,21 +1,21 @@
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth";
+import { cookies } from "next/headers";
+import { signValue } from "@/lib/session";
 import { PLANS } from "@/lib/site";
-import { db } from "@/lib/db";
 
-// 支付完成 → 啟用訂閱 → 訂閱成功頁。正式版：綠界/信用卡授權成功的回呼才寫入。
+// 支付完成 → 把訂閱狀態寫進「簽章 cookie」→ 訂閱成功頁。
+// 用 cookie 而非伺服器記憶體，才能在 Vercel 等無伺服器環境穩定存活。
 export async function POST(req) {
-  const user = getCurrentUser() || db.users[0];
   const form = await req.formData();
   const key = PLANS[(form.get("plan") || "").toString()] ? form.get("plan").toString() : "standard";
 
   const d = new Date();
   d.setMonth(d.getMonth() + 1);
   const end = `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}`;
-  const record = { userId: user.id, plan: key, status: "active", currentPeriodEnd: end, ecpayNo: null };
-  const existing = db.subscriptions.find((s) => s.userId === user.id);
-  if (existing) Object.assign(existing, record);
-  else db.subscriptions.push(record);
+
+  cookies().set("sub", signValue(`${key}|${end}`), {
+    httpOnly: true, sameSite: "lax", path: "/", maxAge: 60 * 60 * 24 * 365,
+  });
 
   return NextResponse.redirect(new URL("/subscribe/success", req.url), { status: 303 });
 }

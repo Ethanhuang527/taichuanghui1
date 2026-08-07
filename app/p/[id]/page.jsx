@@ -12,7 +12,7 @@ export default function PersonArticle({ params }) {
   const person = getPerson(params.id);
   if (!person) return notFound();
   const user = getCurrentUser();
-  const member = isMember(user);
+  const member = isMember();
 
   return (
     <>

@@ -2,8 +2,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { SITE, PLANS } from "@/lib/site";
 import { getCurrentUser } from "@/lib/auth";
-import { getSubscription, db } from "@/lib/db";
-import { isMember } from "@/lib/access";
+import { db } from "@/lib/db";
+import { isMember, currentSubscription } from "@/lib/access";
 import Avatar from "@/components/Avatar";
 
 const NAV = [
@@ -14,8 +14,8 @@ export default function Account() {
   const user = getCurrentUser();
   if (!user) redirect("/login?next=/account");
 
-  const sub = getSubscription(user.id);
-  const member = isMember(user);
+  const sub = currentSubscription();
+  const member = isMember();
   const plan = sub ? (PLANS[sub.plan] || PLANS.standard) : PLANS.standard;
   const recent = db.people.filter((p) => !p.featured).slice(0, 3);
   const times = ["2 天前", "5 天前", "1 週前"];
