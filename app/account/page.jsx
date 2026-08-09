@@ -102,7 +102,7 @@ export default function Account() {
 
         <div className="sec-head" style={{ marginBottom: 12 }}>
           <h2 style={{ fontSize: 18 }}>最近閱讀</h2>
-          <Link href="/people" className="link-teal" style={{ fontSize: 14 }}>查看全部 →</Link>
+          <Link href="/account/history" className="link-teal" style={{ fontSize: 14 }}>查看全部 →</Link>
         </div>
         <div className="readlist">
           {recent.map((x, i) => (

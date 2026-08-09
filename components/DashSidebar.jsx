@@ -7,8 +7,8 @@ const NAV = [
   ["個人資料", "/account/profile"],
   ["我的訂閱", "/account/subscription"],
   ["追蹤的人物", "/account/following"],
-  ["閱讀紀錄", "/account"],
-  ["帳單與付款", "/account"],
+  ["閱讀紀錄", "/account/history"],
+  ["帳單與付款", "/account/billing"],
 ];
 
 export default function DashSidebar({ active, name, planLabel }) {

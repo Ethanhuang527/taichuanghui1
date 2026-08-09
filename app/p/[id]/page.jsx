@@ -7,6 +7,7 @@ import { isMember } from "@/lib/access";
 import SiteHeader from "@/components/SiteHeader";
 import Avatar from "@/components/Avatar";
 import ArticleVideo from "@/components/ArticleVideo";
+import TrackRead from "@/components/TrackRead";
 
 export default function PersonArticle({ params }) {
   const person = getPerson(params.id);
@@ -18,6 +19,7 @@ export default function PersonArticle({ params }) {
     <>
       <SiteHeader />
       <article className="article">
+        <TrackRead personId={person.id} />
         <div className="cat">{person.category} · {person.company}</div>
         <h1>{person.name}：{person.tagline}</h1>
         <div className="byline">

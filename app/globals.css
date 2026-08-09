@@ -406,3 +406,27 @@ textarea.finput{min-height:92px;resize:vertical;line-height:1.6}
 .empty-state{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:40px;text-align:center}
 .empty-state h3{font-family:var(--serif);font-size:22px;margin:0 0 8px}
 .empty-state p{color:var(--sub);margin:0 auto 18px;max-width:400px}
+
+/* ===== 閱讀紀錄 ===== */
+.hist-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+@media(max-width:700px){.hist-stats{grid-template-columns:1fr}}
+.hist-group{margin:20px 0 8px;color:var(--muted);font-size:13px;font-weight:700;letter-spacing:.04em}
+.hist-group:first-of-type{margin-top:4px}
+.readrow .rt{margin-left:auto;text-align:right;white-space:nowrap;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.readrow .rt .tm{color:var(--muted);font-size:13px}
+.readrow .rt .re{color:var(--teal);font-size:12.5px;font-weight:700}
+.readrow .ttl{color:var(--sub);font-size:14px;margin-top:2px}
+
+/* ===== 帳單與付款 ===== */
+.bill-next{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.bill-next .amt{font-family:var(--serif);font-size:34px;font-weight:800;color:var(--teal)}
+.bill-next .when{color:var(--sub);font-size:14px}
+.bill-next .when b{color:var(--ink)}
+.bill-table{width:100%;border-collapse:collapse;font-size:14px}
+.bill-table th{text-align:left;color:var(--muted);font-weight:600;font-size:13px;padding:8px;border-bottom:1px solid var(--line)}
+.bill-table td{padding:14px 8px;border-bottom:1px solid var(--line-2);color:var(--sub)}
+.bill-table tr:last-child td{border-bottom:none}
+.bill-table td.amt{font-weight:700;color:var(--ink)}
+.bill-table .rc{color:var(--teal);font-weight:700}
+.paid-badge{display:inline-block;font-size:12px;font-weight:800;color:var(--teal);background:rgba(127,212,193,.14);padding:2px 9px;border-radius:999px}
+.pm-line{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
