@@ -32,6 +32,20 @@ export default function SiteHeader({ active }) {
         ) : (
           <Link href="/login" className="btn primary" style={{ padding: "9px 18px" }}>登入</Link>
         )}
+
+        {/* 手機版漢堡選單 */}
+        <details className="mobile-menu">
+          <summary aria-label="選單">☰</summary>
+          <div className="menu-panel">
+            {nav.map(([label, href], i) => (
+              <Link key={i} href={href}>{label}</Link>
+            ))}
+            <div className="divider-m" />
+            {user
+              ? <Link href="/account">會員中心（{p.name}）</Link>
+              : <Link href="/login">登入</Link>}
+          </div>
+        </details>
       </div>
     </div>
   );

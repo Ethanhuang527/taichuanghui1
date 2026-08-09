@@ -92,6 +92,7 @@ export default function Billing() {
             {/* 歷史帳單 */}
             <div className="info-card">
               <h3>帳單紀錄</h3>
+              <div className="bill-scroll">
               <table className="bill-table">
                 <thead>
                   <tr><th>日期</th><th>單號</th><th>項目</th><th>金額</th><th>狀態</th><th>收據</th></tr>
@@ -109,6 +110,7 @@ export default function Billing() {
                   ))}
                 </tbody>
               </table>
+              </div>
             </div>
           </>
         )}
