@@ -5,6 +5,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { isMember, currentSubscription } from "@/lib/access";
 import { getProfile } from "@/lib/profile";
+import { getFollowing } from "@/lib/follow";
 import Avatar from "@/components/Avatar";
 import DashSidebar from "@/components/DashSidebar";
 
@@ -21,6 +22,8 @@ export default function Account() {
   const planLabel = member ? `${plan.name}訂閱` : "免費帳號";
   const recent = db.people.filter((x) => !x.featured).slice(0, 3);
   const times = ["2 天前", "5 天前", "1 週前"];
+  const following = getFollowing();
+  const newStories = db.people.filter((x) => following.includes(x.id) && x.isNew).length;
 
   const hasProfile = p.company || p.title || p.field || p.education;
 
@@ -55,8 +58,8 @@ export default function Account() {
           </div>
           <div className="tile">
             <div className="lbl">追蹤人物</div>
-            <div className="big">{db.stats.following} 位</div>
-            <div className="foot">3 位有新故事</div>
+            <div className="big">{following.length} 位</div>
+            <div className="foot"><Link href="/account/following" className="link-teal">{newStories} 位有新故事 →</Link></div>
           </div>
           <div className="tile">
             <div className="lbl">會員到期</div>

@@ -6,7 +6,7 @@ const NAV = [
   ["總覽", "/account"],
   ["個人資料", "/account/profile"],
   ["我的訂閱", "/account/subscription"],
-  ["追蹤的人物", "/account"],
+  ["追蹤的人物", "/account/following"],
   ["閱讀紀錄", "/account"],
   ["帳單與付款", "/account"],
 ];

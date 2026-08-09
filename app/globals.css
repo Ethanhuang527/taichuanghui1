@@ -362,3 +362,32 @@ textarea.finput{min-height:92px;resize:vertical;line-height:1.6}
 .pm .pr{font-size:20px;font-weight:800;margin:6px 0 12px}
 .pm .pr small{font-size:13px;color:var(--muted);font-weight:600}
 .pm .curtag{display:inline-block;font-size:11px;font-weight:800;color:var(--teal);background:rgba(127,212,193,.14);padding:2px 9px;border-radius:999px;margin-bottom:8px}
+
+/* ===== 追蹤的人物 ===== */
+.follow-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.follow-bar .cnt{color:var(--muted);font-size:14px}
+.tabs{display:flex;gap:8px;margin-left:auto}
+.tab{padding:8px 14px;border-radius:999px;border:1px solid var(--line);color:var(--sub);font-size:13.5px;font-weight:700}
+.tab:hover{color:var(--ink)}
+.tab.active{background:rgba(127,212,193,.12);border-color:var(--teal);color:var(--teal)}
+.new-callout{display:flex;align-items:center;gap:10px;background:rgba(127,212,193,.09);border:1px solid var(--teal);border-radius:12px;padding:12px 16px;color:var(--teal);font-weight:700;font-size:14px;margin:14px 0 18px}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:1000px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.fgrid{grid-template-columns:1fr}}
+.fcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px;position:relative;transition:.15s}
+.fcard:hover{border-color:rgba(127,212,193,.4);box-shadow:var(--glow)}
+.fcard .newdot{position:absolute;top:14px;right:14px;background:var(--teal);color:var(--cta-ink);font-size:11px;font-weight:800;padding:2px 9px;border-radius:999px}
+.fcard .tag{align-self:flex-start;font-size:11px;font-weight:700;color:var(--teal);background:rgba(127,212,193,.12);padding:2px 9px;border-radius:999px}
+.fcard .head{display:flex;align-items:center;gap:12px}
+.fcard .nm{font-weight:800;font-size:16px;color:var(--ink)}
+.fcard .nm:hover{color:var(--teal)}
+.fcard .co{color:var(--muted);font-size:12.5px;margin-top:2px}
+.fcard .hook{color:var(--sub);font-size:14px;line-height:1.6;min-height:44px}
+.fcard .foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:4px}
+.fcard .upd{color:var(--muted);font-size:12.5px}
+.btn.sm{padding:7px 13px;font-size:13px;border-radius:9px}
+.btn.following{background:transparent;border:1px solid var(--teal);color:var(--teal)}
+.btn.following:hover{background:rgba(255,120,120,.12);border-color:#ff9b9b;color:#ff9b9b}
+.empty-state{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:40px;text-align:center}
+.empty-state h3{font-family:var(--serif);font-size:22px;margin:0 0 8px}
+.empty-state p{color:var(--sub);margin:0 auto 18px;max-width:400px}
