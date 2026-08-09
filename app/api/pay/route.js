@@ -3,17 +3,19 @@ import { cookies } from "next/headers";
 import { signValue } from "@/lib/session";
 import { PLANS } from "@/lib/site";
 
-// 支付完成 → 把訂閱狀態寫進「簽章 cookie」→ 訂閱成功頁。
-// 用 cookie 而非伺服器記憶體，才能在 Vercel 等無伺服器環境穩定存活。
+const fmt = (d) => `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}`;
+
+// 支付完成 → 訂閱寫進簽章 cookie（含起始日與續訂日）→ 訂閱成功頁。
 export async function POST(req) {
   const form = await req.formData();
   const key = PLANS[(form.get("plan") || "").toString()] ? form.get("plan").toString() : "standard";
 
-  const d = new Date();
-  d.setMonth(d.getMonth() + 1);
-  const end = `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}`;
+  const start = new Date();
+  const end = new Date(start);
+  end.setMonth(end.getMonth() + 1); // 月訂閱：續訂日為一個月後
 
-  cookies().set("sub", signValue(`${key}|${end}`), {
+  // cookie 格式：`<plan>|<起始日>|<續訂日>`
+  cookies().set("sub", signValue(`${key}|${fmt(start)}|${fmt(end)}`), {
     httpOnly: true, sameSite: "lax", path: "/", maxAge: 60 * 60 * 24 * 365,
   });
 

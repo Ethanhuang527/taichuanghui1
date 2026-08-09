@@ -94,8 +94,6 @@ export default function ProfileView() {
             <Row k="" v={p.bio} full />
           </div>
         </div>
-
-        <Link href="/account/settings" className="btn primary">編輯資料</Link>
       </main>
     </div>
   );

@@ -335,3 +335,30 @@ textarea.finput{min-height:92px;resize:vertical;line-height:1.6}
 .info-row.full{grid-column:1 / -1}
 .info-row.full .k{display:none}
 .info-row.full .v{flex:1;text-align:left;font-weight:400;line-height:1.8}
+
+/* ===== 我的訂閱 ===== */
+.sub-status{background:linear-gradient(180deg,rgba(127,212,193,.09),var(--panel));border:1.5px solid var(--teal);border-radius:18px;padding:26px;box-shadow:var(--glow);margin-bottom:18px}
+.sub-status .planrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.sub-status .crown{font-size:22px}
+.sub-status .pname{font-family:var(--serif);font-size:24px;font-weight:800}
+.sub-status .price{color:var(--sub);font-size:15px;margin-left:auto}
+.countdown{display:flex;align-items:baseline;gap:10px;margin:20px 0 4px}
+.countdown .num{font-size:46px;font-weight:800;color:var(--teal);font-family:var(--serif);line-height:1}
+.countdown .unit{font-size:16px;color:var(--sub)}
+.count-note{color:var(--muted);font-size:13.5px}
+.pbar{height:8px;border-radius:999px;background:rgba(127,212,193,.15);overflow:hidden;margin:16px 0 8px}
+.pbar-fill{height:100%;background:linear-gradient(90deg,var(--teal-2),var(--teal));border-radius:999px}
+.pbar-legend{display:flex;justify-content:space-between;color:var(--muted);font-size:12.5px}
+.sub-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.sub-empty{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:34px;text-align:center}
+.sub-empty h3{font-family:var(--serif);font-size:22px;margin:0 0 8px}
+.sub-empty p{color:var(--sub);margin:0 auto 18px;max-width:420px}
+.plan-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:12px}
+@media(max-width:1000px){.plan-mini{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.plan-mini{grid-template-columns:1fr}}
+.pm{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.pm.cur{border-color:var(--teal);background:linear-gradient(180deg,rgba(127,212,193,.08),var(--panel))}
+.pm .nm{font-family:var(--serif);font-weight:800;font-size:17px}
+.pm .pr{font-size:20px;font-weight:800;margin:6px 0 12px}
+.pm .pr small{font-size:13px;color:var(--muted);font-weight:600}
+.pm .curtag{display:inline-block;font-size:11px;font-weight:800;color:var(--teal);background:rgba(127,212,193,.14);padding:2px 9px;border-radius:999px;margin-bottom:8px}

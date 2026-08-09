@@ -94,7 +94,7 @@ export default function Account() {
             </div>
             {member && <div className="muted" style={{ fontSize: 13, marginTop: 4 }}>包含：完整人物專訪 · 語錄選集 · 每週來信 · 無廣告閱讀</div>}
           </div>
-          <Link href="/pricing" className="btn ghost">{member ? "管理訂閱" : "前往訂閱"}</Link>
+          <Link href={member ? "/account/subscription" : "/pricing"} className="btn ghost">{member ? "管理訂閱" : "前往訂閱"}</Link>
         </div>
 
         <div className="sec-head" style={{ marginBottom: 12 }}>
