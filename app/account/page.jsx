@@ -1,54 +1,41 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { SITE, PLANS } from "@/lib/site";
+import { PLANS } from "@/lib/site";
 import { getCurrentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { isMember, currentSubscription } from "@/lib/access";
+import { getProfile } from "@/lib/profile";
 import Avatar from "@/components/Avatar";
+import DashSidebar from "@/components/DashSidebar";
 
-const NAV = [
-  ["總覽", true], ["我的訂閱"], ["追蹤的人物"], ["閱讀紀錄"], ["帳號設定"], ["帳單與付款"],
-];
+const GENDER = { female: "女", male: "男", other: "其他", na: "不透露" };
 
 export default function Account() {
   const user = getCurrentUser();
   if (!user) redirect("/login?next=/account");
 
+  const p = getProfile();
   const sub = currentSubscription();
   const member = isMember();
   const plan = sub ? (PLANS[sub.plan] || PLANS.standard) : PLANS.standard;
-  const recent = db.people.filter((p) => !p.featured).slice(0, 3);
+  const planLabel = member ? `${plan.name}訂閱` : "免費帳號";
+  const recent = db.people.filter((x) => !x.featured).slice(0, 3);
   const times = ["2 天前", "5 天前", "1 週前"];
+
+  const hasProfile = p.company || p.title || p.field || p.education;
 
   return (
     <div className="dash">
-      <aside className="side">
-        <div className="brand"><span className="dot" />{SITE.brand}</div>
-        <nav className="nav">
-          {NAV.map(([label, active]) => (
-            <Link key={label} href="/account" className={active ? "active" : ""}>
-              <span style={{ width: 8, height: 8, borderRadius: 2, background: "currentColor", display: "inline-block", opacity: .8 }} />
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <div className="me">
-          <Avatar size={36} ring />
-          <div>
-            <div className="nm">{user.name}</div>
-            <div className="pl">{member ? plan.name : "免費帳號"}</div>
-          </div>
-        </div>
-      </aside>
+      <DashSidebar active="總覽" name={p.name} planLabel={planLabel} />
 
       <main className="main">
         <div className="top">
           <h1>帳號總覽</h1>
           <div className="search">搜尋…</div>
-          <span className="avatar-sq">{user.name?.[0] || "會"}</span>
+          <span className="avatar-sq">{p.name?.[0] || "會"}</span>
         </div>
 
-        <div className="greet">早安，{user.name}。</div>
+        <div className="greet">早安，{p.name}。</div>
         <p className="greet-sub">
           {member
             ? `你的會員有效，本月已讀 ${db.stats.readThisMonth} 篇人物故事。`
@@ -59,7 +46,7 @@ export default function Account() {
           <div className="tile">
             <div className="lbl">訂閱狀態</div>
             <div className="big">{member ? "有效" : "未訂閱"}</div>
-            <div className="foot">{member ? plan.name : <Link href="/pricing" className="link-green">前往訂閱</Link>}</div>
+            <div className="foot">{member ? plan.name : <Link href="/pricing" className="link-teal">前往訂閱</Link>}</div>
           </div>
           <div className="tile">
             <div className="lbl">本月已讀</div>
@@ -78,6 +65,25 @@ export default function Account() {
           </div>
         </div>
 
+        {/* 我的資料 */}
+        <div className="subcard">
+          <div>
+            <div className="h">我的資料 {p.isCompanyPerson && <span className="chip">公司人物</span>}</div>
+            <div className="muted" style={{ marginTop: 6, fontSize: 14 }}>
+              {hasProfile
+                ? [p.company, p.title, p.field, p.education && `${p.education}`].filter(Boolean).join(" · ")
+                : "尚未填寫公司與專業資料"}
+            </div>
+            {(p.gender || p.birthdate) && (
+              <div className="muted" style={{ fontSize: 13, marginTop: 4 }}>
+                {[GENDER[p.gender], p.birthdate].filter(Boolean).join(" · ")}
+              </div>
+            )}
+          </div>
+          <Link href="/account/settings" className="btn ghost">編輯個人資料</Link>
+        </div>
+
+        {/* 我的訂閱 */}
         <div className="subcard">
           <div>
             <div className="h">我的訂閱 {member && <span className="chip">有效中</span>}</div>
@@ -93,16 +99,16 @@ export default function Account() {
 
         <div className="sec-head" style={{ marginBottom: 12 }}>
           <h2 style={{ fontSize: 18 }}>最近閱讀</h2>
-          <Link href="/people" className="link-green" style={{ fontSize: 14 }}>查看全部 →</Link>
+          <Link href="/people" className="link-teal" style={{ fontSize: 14 }}>查看全部 →</Link>
         </div>
         <div className="readlist">
-          {recent.map((p, i) => (
-            <Link key={p.id} href={`/p/${p.id}`} className="readrow">
+          {recent.map((x, i) => (
+            <Link key={x.id} href={`/p/${x.id}`} className="readrow">
               <div className="av"><Avatar size={40} /></div>
               <div>
-                <span className="nm">{p.name}</span>{" "}
-                <span className="co">{p.company} · {p.role}</span>
-                <div className="hk">{p.hook}</div>
+                <span className="nm">{x.name}</span>{" "}
+                <span className="co">{x.company} · {x.role}</span>
+                <div className="hk">{x.hook}</div>
               </div>
               <div className="tm">{times[i]}</div>
             </Link>
