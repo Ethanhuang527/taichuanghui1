@@ -14,7 +14,8 @@ const NAV = [
 export default function DashSidebar({ active, name, planLabel }) {
   return (
     <aside className="side">
-      <div className="brand"><span className="dot" />{SITE.brand}</div>
+      <Link href="/browse" className="brand"><span className="dot" />{SITE.brand}</Link>
+      <Link href="/browse" className="side-back">← 回到首頁</Link>
       <nav className="nav">
         {NAV.map(([label, href]) => (
           <Link key={label} href={href} className={active === label ? "active" : ""}>

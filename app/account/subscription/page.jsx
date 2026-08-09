@@ -23,7 +23,7 @@ export default function Subscription() {
       <main className="main">
         <div className="top">
           <h1>我的訂閱</h1>
-          <div className="search">搜尋…</div>
+          <div style={{ flex: 1 }} />
           <span className="avatar-sq">{p.name?.[0] || "會"}</span>
         </div>
 

@@ -36,7 +36,7 @@ export default function ProfileView() {
       <main className="main">
         <div className="top">
           <h1>個人資料</h1>
-          <div className="search">搜尋…</div>
+          <div style={{ flex: 1 }} />
           <span className="avatar-sq">{p.name?.[0] || "會"}</span>
         </div>
 

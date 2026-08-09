@@ -20,8 +20,10 @@ export default function Following({ searchParams }) {
   const followed = db.people.filter((x) => ids.includes(x.id));
   const newCount = followed.filter((x) => x.isNew).length;
   const tab = searchParams?.tab === "new" ? "new" : "all";
+  const q = (searchParams?.q || "").toString().trim();
   const back = `/account/following${tab === "new" ? "?tab=new" : ""}`;
-  const list = tab === "new" ? followed.filter((x) => x.isNew) : followed;
+  let list = tab === "new" ? followed.filter((x) => x.isNew) : followed;
+  if (q) list = list.filter((x) => `${x.name}${x.company}${x.role}${x.hook}`.includes(q));
 
   return (
     <div className="dash">
@@ -30,7 +32,11 @@ export default function Following({ searchParams }) {
       <main className="main">
         <div className="top">
           <h1>追蹤的人物</h1>
-          <div className="search">搜尋…</div>
+          <form className="dash-search" action="/account/following" method="get">
+            {tab === "new" && <input type="hidden" name="tab" value="new" />}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4-4" strokeLinecap="round" /></svg>
+            <input name="q" defaultValue={q} placeholder="搜尋追蹤的人物…" />
+          </form>
           <span className="avatar-sq">{p.name?.[0] || "會"}</span>
         </div>
 
@@ -48,8 +54,8 @@ export default function Following({ searchParams }) {
 
         {list.length === 0 ? (
           <div className="empty-state">
-            <h3>{tab === "new" ? "目前沒有新專訪" : "還沒有追蹤任何人物"}</h3>
-            <p>{tab === "new" ? "追蹤的人物有新內容時，會出現在這裡。" : "到人物列表探索，追蹤你感興趣的創業者與經營者。"}</p>
+            <h3>{q ? "找不到符合的人物" : tab === "new" ? "目前沒有新專訪" : "還沒有追蹤任何人物"}</h3>
+            <p>{q ? `沒有符合「${q}」的追蹤人物，換個關鍵字試試。` : tab === "new" ? "追蹤的人物有新內容時，會出現在這裡。" : "到人物列表探索，追蹤你感興趣的創業者與經營者。"}</p>
             <Link href="/people" className="btn primary">探索人物</Link>
           </div>
         ) : (

@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { SITE } from "@/lib/site";
 import { getCurrentUser } from "@/lib/auth";
+import { getProfile } from "@/lib/profile";
 
 // 內容區頁首（首頁＝/browse 內容首頁；品牌回入口頁 /）
 export default function SiteHeader({ active }) {
   const user = getCurrentUser();
+  const p = user ? getProfile() : null;
   const nav = [
     ["首頁", "/browse"],
     ["人物", "/people"],
@@ -21,13 +23,12 @@ export default function SiteHeader({ active }) {
           <Link key={i} href={href} className={`nav${active === label ? " active" : ""}`}>{label}</Link>
         ))}
         <div className="sp" />
-        <div className="iconbtn" aria-hidden="true">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="11" cy="11" r="7" /><path d="M21 21l-4-4" strokeLinecap="round" />
-          </svg>
-        </div>
         {user ? (
-          <Link href="/account" className="avatar-sq">{user.name?.[0] || "會"}</Link>
+          <Link href="/account" className="user-chip" title="會員中心">
+            <span className="ava">{p.name?.[0] || "會"}</span>
+            <span className="unm">{p.name}</span>
+            <span className="caret">▾</span>
+          </Link>
         ) : (
           <Link href="/login" className="btn primary" style={{ padding: "9px 18px" }}>登入</Link>
         )}
