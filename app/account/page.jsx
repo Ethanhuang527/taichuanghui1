@@ -80,7 +80,7 @@ export default function Account() {
               </div>
             )}
           </div>
-          <Link href="/account/settings" className="btn ghost">編輯個人資料</Link>
+          <Link href="/account/profile" className="btn ghost">查看個人資料</Link>
         </div>
 
         {/* 我的訂閱 */}

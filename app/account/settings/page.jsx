@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth";
 import { getProfile } from "@/lib/profile";
@@ -18,7 +19,7 @@ export default function Settings({ searchParams }) {
 
   return (
     <div className="dash">
-      <DashSidebar active="帳號設定" name={p.name} planLabel={planLabel} />
+      <DashSidebar active="個人資料" name={p.name} planLabel={planLabel} />
 
       <main className="main">
         <div className="top">
@@ -27,7 +28,8 @@ export default function Settings({ searchParams }) {
           <span className="avatar-sq">{p.name?.[0] || "會"}</span>
         </div>
 
-        <div className="greet" style={{ fontSize: 22 }}>個人資料</div>
+        <Link href="/account/profile" className="link-teal" style={{ fontSize: 14 }}>← 返回個人資料</Link>
+        <div className="greet" style={{ fontSize: 22, marginTop: 6 }}>編輯個人資料</div>
         <p className="greet-sub">維護你的基本資料、公司與專業背景。這些資料僅用於個人化你的會員體驗。</p>
 
         {saved && <div className="saved-banner">✓ 個人資料已更新</div>}

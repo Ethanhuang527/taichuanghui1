@@ -4,10 +4,10 @@ import Avatar from "./Avatar";
 
 const NAV = [
   ["總覽", "/account"],
+  ["個人資料", "/account/profile"],
   ["我的訂閱", "/account"],
   ["追蹤的人物", "/account"],
   ["閱讀紀錄", "/account"],
-  ["帳號設定", "/account/settings"],
   ["帳單與付款", "/account"],
 ];
 

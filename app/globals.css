@@ -316,3 +316,22 @@ textarea.finput{min-height:92px;resize:vertical;line-height:1.6}
 .toggle-row .t{font-weight:700;color:var(--ink);font-size:14px}
 .toggle-row .s{color:var(--muted);font-size:12.5px}
 .sub-panel{border:1px dashed var(--line);border-radius:12px;padding:16px;margin-top:4px}
+
+/* ===== profile 檢視（唯讀）===== */
+.profile-hero{display:flex;align-items:center;gap:18px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px;flex-wrap:wrap}
+.profile-hero .av{border-radius:50%;overflow:hidden;border:2px solid var(--teal);box-shadow:var(--glow);flex:none}
+.profile-hero .nm{font-family:var(--serif);font-size:24px;font-weight:800}
+.profile-hero .role{color:var(--teal);font-size:14px;font-weight:700;margin-top:2px}
+.profile-hero .meta{color:var(--muted);font-size:13px;margin-top:4px}
+.profile-hero .grow{flex:1;min-width:180px}
+.info-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:16px}
+.info-card h3{font-family:var(--serif);font-size:17px;margin:0 0 6px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+@media(max-width:600px){.info-grid{grid-template-columns:1fr}}
+.info-row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line-2)}
+.info-row .k{color:var(--muted);font-size:14px;white-space:nowrap}
+.info-row .v{color:var(--ink);font-size:14px;font-weight:600;text-align:right}
+.info-row .v.empty{color:var(--muted);font-weight:400}
+.info-row.full{grid-column:1 / -1}
+.info-row.full .k{display:none}
+.info-row.full .v{flex:1;text-align:left;font-weight:400;line-height:1.8}
