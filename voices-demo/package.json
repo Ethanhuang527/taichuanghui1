@@ -1,0 +1,17 @@
+{
+  "name": "voices-demo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "VOICES／台創會 人物專訪訂閱站 Demo：會員鑑權 + 文章付費牆 + 內嵌專訪影片 + 每週電子報",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}
