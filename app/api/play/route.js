@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth";
 import { getPerson } from "@/lib/db";
 import { canWatch } from "@/lib/access";
-import { signedPlaybackUrl } from "@/lib/bunny";
 
-// 影片鑑權：僅會員可取得簽章播放網址。
+// 影片鑑權：只有會員才拿得到 YouTube 影片 ID（非會員連 ID 都拿不到）。
+// 影片在 YouTube 設「不公開(unlisted)」，靠這裡的頁面層級把關只給會員看。
 export async function POST(req) {
   const { personId } = await req.json();
   const person = getPerson(personId);
@@ -13,6 +12,5 @@ export async function POST(req) {
 
   if (!canWatch()) return NextResponse.json({ reason: "paywall" }, { status: 403 });
 
-  const { url, expires } = signedPlaybackUrl(person);
-  return NextResponse.json({ url, expires });
+  return NextResponse.json({ provider: "youtube", youtubeId: person.youtubeId });
 }

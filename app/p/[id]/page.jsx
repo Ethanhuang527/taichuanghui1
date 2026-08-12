@@ -47,6 +47,20 @@ export default function PersonArticle({ params }) {
           </>
         ) : (
           <>
+            {/* 免費預告（公開影片，非會員也能看，吸引訂閱） */}
+            {person.hasVideo && person.previewYoutubeId && (
+              <>
+                <div className="vlabel">🎬 免費預告</div>
+                <div className="vwrap">
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${person.previewYoutubeId}?rel=0&modestbranding=1&playsinline=1&color=white&iv_load_policy=3`}
+                    title="免費預告"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </>
+            )}
             {/* 鎖住的後段：只露出一小段做 fade */}
             <div className="fade-lock">
               <p>{person.body[0]}</p>

@@ -176,6 +176,8 @@ a{color:inherit;text-decoration:none}
 .pquote{font-family:var(--serif);border-left:3px solid var(--teal);padding:6px 0 6px 20px;margin:26px 0;font-size:23px;font-weight:800;color:var(--ink);line-height:1.6}
 .vwrap{margin:26px 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000;aspect-ratio:16/9;box-shadow:var(--glow)}
 .vwrap video{width:100%;height:100%;display:block}
+.vwrap iframe{width:100%;height:100%;display:block;border:0}
+.vlabel{display:inline-block;color:var(--teal);font-weight:800;font-size:13px;letter-spacing:.03em;margin:8px 0 2px}
 .paywall{margin:30px 0;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--panel),var(--bg-2));padding:34px;text-align:center;box-shadow:var(--glow)}
 .paywall h3{font-family:var(--serif);font-size:23px;margin:0 0 8px}
 .paywall p{color:var(--sub);margin:0 auto 18px;max-width:440px}
